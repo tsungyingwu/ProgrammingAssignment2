@@ -3,25 +3,25 @@
 
 makeCacheMatrix <- function(x = matrix()) {
   inv <- NULL
-  set <- functioin(y){
-    x <<-y
-    inv <<- NULL
+  set <- functioin(j){
+    x <<-j
+    myinv <<- NULL
   }
   get <- function() x
-  setinv <- function(inv) inv <<- inverse
-  getinv <- fucntion(inv) inv
-  list(set=set,get=get,setinv=setinv,getinv=getinv)
+  setmyinv <- function(myinv) myinv <<- inverse
+  getmyinv <- fucntion(myinv) myinv
+  list(set=set,get=get,setmyinv=setmyinv,getmyinv=getmyinv)
 }
 
 
 cacheSolve <- function(x, ...) {
   ## Return a matrix that is the inverse of 'x'
-  inv = x$getinv()
-  if(!is.null(inv)){ #already exists
-    return(inv) #return results and program termiantes
+  myinv = x$getmyinv()
+  if(!is.null(myinv)){ #already exists
+    return(myinv) #return results and program termiantes
   }
   mat.data = x$get()
-  inv=solve(mat.data,...) #calculate inverse
-  x$setin(inv)
-  return(inv)
+  myinv=solve(mat.data,...) #calculate inverse
+  x$setin(myinv)
+  return(myinv)
 }
